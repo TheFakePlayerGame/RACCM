@@ -1,4 +1,5 @@
-[![Discord](https://img.shields.io/discord/871845273800957982?label=Discord)](https://discord.gg/MsEH7smXY8)
+# Hello! I'm TheFakePlayerGame
+This README has been slightly modified by me, Thank You!
 
 # Roblox Account Manager
 Application that allows you to add multiple accounts into one application allowing you to easily play on alt accounts without having to change accounts
@@ -153,15 +154,5 @@ Make sure you click "Open Details" before screenshotting. Please make sure your 
 | Auto Relaunch | Automatically relaunch your accounts if they are not in game/have been AFK kicked | Watch a youtube tutorial on how to use this. If you do not have an executor that works with Nexus.lua: click `Account Control`, go to `Settings`, then enable `Use Presence API` |
 | Quick Log In | Easily log in to an account on a different computer using Roblox's Quick Log In feature | Right click an account, then select `Quick Log In` |
 | AI Captcha Assistance | Assists you in the "Pick the image" captchas using the Nopecha API (Requires a subscription key) | You can enable auto solve, but it is not recommended to use, your best option is to add a captcha solving extension to the browser along with a BrowserConfig to automatically set the key per new browser opened |
-
-# Preview (Version 3.4)
-![github-large](Images/Image4.png)
-
-# Preview (Version 3.1)
-![github-large](Images/Image3.png)
-
-# Preview (Version 2.6)
-![github-large](Images/image2.png)
-
 # Preview (Old)
 ![github-large](Images/Image1.png)
