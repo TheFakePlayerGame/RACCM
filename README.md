@@ -7,8 +7,6 @@ Useful for games that require grinding off other players, or storage accounts th
 
 You are welcome to edit the code. Multiple Roblox Instances is built into the account manager but must be manually enabled in the settings.
 
-Report bugs via Discord: https://discord.gg/MsEH7smXY8
-
 # WARNING
 If someone asks you to generate an "rbx-player link", **DO NOT** do it, they can use these to join any game using your account, or even launch roblox studio with one of your games. They can do many things in game such as spend your robux or even do things that can get your account terminated. **USE THESE FEATURES AT YOUR OWN RISK**
 
