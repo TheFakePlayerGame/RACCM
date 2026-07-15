@@ -108,14 +108,33 @@ namespace RBX_Alt_Manager
         }
 
         public RestRequest MakeRequest(string url, Method method = Method.Get) => new RestRequest(url, method).AddCookie(".ROBLOSECURITY", SecurityToken, "/", ".roblox.com");
+        public string GetClientAssertion()
+        {
+            RestRequest request = MakeRequest("/v1/client-assertion/", Method.Get)
+                .AddHeader("Referer", "https://www.roblox.com/");
 
+            RestResponse response = AccountManager.AuthClient.Execute(request);
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                JObject json = JObject.Parse(response.Content);
+                return json["clientAssertion"]?.ToString() ?? string.Empty;
+            }
+
+            return string.Empty;
+        }
         public bool GetAuthTicket(out string Ticket)
         {
             Ticket = string.Empty;
 
             if (!GetCSRFToken(out string Token)) return false;
+            
+            string Assertion = GetClientAssertion();
+            
+            if (string.IsNullOrEmpty(Assertion))
+                return false;
 
-            RestRequest request = MakeRequest("/v1/authentication-ticket/", Method.Post).AddHeader("X-CSRF-TOKEN", Token).AddHeader("Referer", "https://www.roblox.com/games/4924922222/Brookhaven-RP");
+            RestRequest request = MakeRequest("/v1/authentication-ticket/", Method.Post).AddHeader("X-CSRF-TOKEN", Token).AddHeader("Referer", "https://www.roblox.com/").AddHeader("Origin", "https://www.roblox.com").AddJsonBody(new { clientAssertion = Assertion });
 
             RestResponse response = AccountManager.AuthClient.Execute(request);
 
