@@ -1,6 +1,7 @@
 # Hello! I'm TheFakePlayerGame
 This README has been slightly modified by me, Thank You!
 I have also added my personal code certificate for you to install if you trust my code!
+My discord user is TheFake_
 
 # Roblox Account Manager
 Application that allows you to add multiple accounts into one application allowing you to easily play on alt accounts without having to change accounts
