@@ -628,7 +628,8 @@
     </ItemGroup>
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>copy "$(SolutionDir)\Launcher" "$(TargetDir)\RBX Alt Manager.exe"</PostBuildEvent>
+    <PostBuildEvent>copy "$(SolutionDir)\Launcher" "$(TargetDir)\RBX Alt Manager.exe"
+</PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\Baseclass.Contrib.Nuget.Output.2.4.4\build\Baseclass.Contrib.Nuget.Output.targets" Condition="Exists('..\packages\Baseclass.Contrib.Nuget.Output.2.4.4\build\Baseclass.Contrib.Nuget.Output.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

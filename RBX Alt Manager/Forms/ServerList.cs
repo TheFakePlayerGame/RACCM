@@ -38,6 +38,7 @@ namespace RBX_Alt_Manager
             ThumbClient = new RestClient("https://thumbnails.roblox.com/");
             GamesClient = new RestClient("https://games.roblox.com/");
             DevelopClient = new RestClient("https://develop.roblox.com/");
+            SearchClient = new RestClient("https://apis.roblox.com/");
 
             if (!AccountManager.Watcher.Exists("VerifyDataModel")) AccountManager.Watcher.Set("VerifyDataModel", "true");
             if (!AccountManager.Watcher.Exists("IgnoreExistingProcesses")) AccountManager.Watcher.Set("IgnoreExistingProcesses", "true");
@@ -136,6 +137,7 @@ namespace RBX_Alt_Manager
         public static RestClient ThumbClient;
         public static RestClient DevelopClient;
         public static RestClient GamesClient;
+        public static RestClient SearchClient;
         private int Page = 0;
         private List<FavoriteGame> Favorites;
         private readonly string FavGamesFN = Path.Combine(Environment.CurrentDirectory, "FavoriteGames.json");
@@ -404,7 +406,8 @@ namespace RBX_Alt_Manager
             if (NoTerm)
                 Response = await GamesClient.ExecuteAsync(new RestRequest(string.Format("v1/games/list?model.startRows={0}&model.maxRows=50", Page * 50), Method.Get));
             else
-                Response = await AccountManager.MainClient.ExecuteAsync(new RestRequest($"games/list-json?keyword={Term.Text}&startRows={Page * 40}&maxRows=40", Method.Get));
+                Response = await SearchClient.ExecuteAsync(new RestRequest($"search-api/omni-search?searchQuery={Term.Text}&sessionId={Guid.NewGuid()}", Method.Get));
+                MessageBox.Show(Response.Content);
 
             lock (RLLock)
             {
@@ -412,7 +415,7 @@ namespace RBX_Alt_Manager
 
                 if (Response.StatusCode == HttpStatusCode.OK)
                 {
-                    List<PageGame> gamesList = NoTerm ? new List<PageGame>() : JsonConvert.DeserializeObject<List<PageGame>>(Response.Content);
+                    List<PageGame> gamesList = NoTerm ? new List<PageGame>() : JObject.Parse(Response.Content)["searchResults"].SelectMany(x => x["contents"]).Select(x => new PageGame((long)x["rootPlaceId"], (string)x["name"]) { TotalUpVotes = (int)x["totalUpVotes"], TotalDownVotes = (int)x["totalDownVotes"] }).ToList();
 
                     if (NoTerm)
                     {
