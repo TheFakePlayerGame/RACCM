@@ -407,7 +407,6 @@ namespace RBX_Alt_Manager
                 Response = await GamesClient.ExecuteAsync(new RestRequest(string.Format("v1/games/list?model.startRows={0}&model.maxRows=50", Page * 50), Method.Get));
             else
                 Response = await SearchClient.ExecuteAsync(new RestRequest($"search-api/omni-search?searchQuery={Term.Text}&sessionId={Guid.NewGuid()}", Method.Get));
-                MessageBox.Show(Response.Content);
 
             lock (RLLock)
             {
