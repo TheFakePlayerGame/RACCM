@@ -629,7 +629,7 @@
   </Target>
   <PropertyGroup>
     <PostBuildEvent>copy "$(SolutionDir)\Launcher" "$(TargetDir)\RBX Alt Manager.exe"
-</PostBuildEvent>
+"C:\Program Files (x86)\Windows Kits\10\bin\10.0.28000.0\\x86\signtool.exe" sign /sha1 A91338B5973FF23F78E88C8B26AFE08B3E81BB81 /fd SHA256 /tr http://timestamp.digicert.com /td SHA256 "$(TargetPath)"</PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\Baseclass.Contrib.Nuget.Output.2.4.4\build\Baseclass.Contrib.Nuget.Output.targets" Condition="Exists('..\packages\Baseclass.Contrib.Nuget.Output.2.4.4\build\Baseclass.Contrib.Nuget.Output.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
